@@ -1,17 +1,9 @@
 import { ICatalogRepository } from '../../interface/catalogRepository.interface';
 import { Product } from '../../models/product.model';
 import { MockCatalogRepository } from '../../repository/mockCatalog.repository';
+import { ProductFactory } from '../../utils';
 import { CatalogService } from '../catalog.service';
 import { faker } from '@faker-js/faker'
-import { Factory } from 'rosie';
-
-const productFactory = new Factory<Product>()
-  .attr('id', faker.number.int({ min: 1, max: 1000 }) as any)
-  .attr('name', faker.commerce.productName())
-  .attr('description', faker.commerce.productDescription())
-  .attr('stock', faker.number.int({ min: 10, max: 100 }))
-  .attr('price', +faker.commerce.price())
-
 
 const mockProduct = (rest: any) => {
   return {
@@ -83,7 +75,7 @@ describe("CatalogService", () => {
 
       const service = new CatalogService(repository);
       const randomLimit = faker.number.int({ min: 10, max: 60 });
-      const prodcuts = productFactory.buildList(randomLimit)
+      const prodcuts = ProductFactory.buildList(randomLimit)
       jest.spyOn(repository, 'find').mockImplementationOnce(() => Promise.resolve(prodcuts))
       const result = await service.getProducts(randomLimit, 0)
 
@@ -103,7 +95,7 @@ describe("CatalogService", () => {
     test('Should get prodcut by id', async () => {
 
       const service = new CatalogService(repository);
-      const prodcut = productFactory.build();
+      const prodcut = ProductFactory.build();
       jest.spyOn(repository, 'findOne').mockImplementationOnce(() => Promise.resolve(prodcut))
       const result = await service.getProduct(prodcut.id!)
 
@@ -114,7 +106,7 @@ describe("CatalogService", () => {
     test('Should delete prodcut by id', async () => {
 
       const service = new CatalogService(repository);
-      const prodcut = productFactory.build();
+      const prodcut = ProductFactory.build();
       jest.spyOn(repository, 'delete').mockImplementationOnce(() => Promise.resolve({ id: prodcut.id }))
       const result = await service.deleteProduct(prodcut.id!)
 
