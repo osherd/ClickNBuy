@@ -13,9 +13,13 @@ export class CatalogService {
     }
     return data;
   }
-  async updateProduct(inputData: any) {
+  async updateProduct(id: string, inputData: any) {
     // emit event to update record in Elastic search
-    return this.repository.update(inputData)
+    const data = await this.repository.update(id, inputData);
+    if (!data.id) {
+      throw new Error('unable to update product')
+    }
+    return data;
   }
   // We will get products from Elastic search
   async getProducts(limit: number, offset: number) {

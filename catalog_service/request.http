@@ -1,0 +1,10 @@
+POST http://http://localhost:4000/products
+content-type: application/json
+Authorization: token xxx
+
+{
+    "name":"laptop",
+  "description":"recomended laptop",
+  "stock":100,
+  "price":50
+}

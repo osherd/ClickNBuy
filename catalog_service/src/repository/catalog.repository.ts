@@ -8,7 +8,7 @@ export class CatalogRepository implements ICatalogRepository {
   create(data: Product): Promise<Product> {
     throw new Error('Method not implemented.');
   }
-  update(data: Product): Promise<Product> {
+  update(id: string, data: Product): Promise<Product> {
     throw new Error('Method not implemented.');
   }
   find(): Promise<Product[]> {

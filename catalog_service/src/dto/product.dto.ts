@@ -12,3 +12,11 @@ export class CreateProductRequest {
   @Min(1)
   price: number
 }
+
+export class UpdateProductRequest {
+  name?: string;
+  description?: string;
+  stock?: number;
+  @Min(1)
+  price?: number
+}
