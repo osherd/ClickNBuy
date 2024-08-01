@@ -3,6 +3,7 @@ import { CatalogService } from '../services/catalog.service';
 import { CatalogRepository } from '../repository/catalog.repository';
 import { RequestValidator } from '../utils/requestValidator';
 import { CreateProductRequest, UpdateProductRequest } from '../dto/product.dto';
+import { uuid } from 'uuidv4';
 
 
 const router = express.Router();
@@ -10,8 +11,9 @@ export const catalogService = new CatalogService(new CatalogRepository())
 // endpoints
 
 router.post('/products', async (req: Request, res: Response, next: NextFunction) => {
+  const id = uuid();
   try {
-    const { errors, input } = await RequestValidator(CreateProductRequest, req.body)
+    const { errors, input } = await RequestValidator(CreateProductRequest, { ...req.body, id })
     if (errors) {
       return res.status(400).json(errors)
     }
@@ -36,7 +38,7 @@ router.patch('/products/:id', async (req: Request, res: Response, next: NextFunc
     if (errors) {
       return res.status(400).json(errors)
     }
-    const data = await catalogService.updateProduct(id, input);
+    const data = await catalogService.updateProduct({ ...input, id });
     return res.status(200).json(data);
   } catch (error) {
     const err = error as Error;

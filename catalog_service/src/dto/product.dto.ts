@@ -2,6 +2,8 @@ import { IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
 
 export class CreateProductRequest {
   @IsString()
+  id: string
+  @IsString()
   @IsNotEmpty()
   name: string;
   @IsString()
