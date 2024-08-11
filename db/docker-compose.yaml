@@ -9,7 +9,7 @@ services:
       mode: replicated
       replicas: 1
     environment:
-      POSTGRES_USER: catalog_db
+      POSTGRES_USER: catalog_db_user
       POSTGRES_PASSWORD: catalog_db_password
       POSTGRES_DB: catalog_service
     volumes:
@@ -22,7 +22,7 @@ services:
       mode: replicated
       replicas: 1
     environment:
-      POSTGRES_USER: order_db
+      POSTGRES_USER: order_db_user
       POSTGRES_PASSWORD: order_db_password
       POSTGRES_DB: order_service
     volumes:

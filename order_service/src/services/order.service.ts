@@ -1,19 +1,23 @@
-import { orderRepositoryType } from '../types/repository.types'
+// import { orderRepositoryType } from '../repository/'
 
-export const CreateOrder = (input: any, repo: orderRepositoryType) => {
+export const CreateOrder = (input: any, repo: any) => {
+
+  return {}
   return repo.create(input)
 
 }
 
-export const EditOrder = (input: any, repo: orderRepositoryType) => {
-  return repo.update(input)
+export const EditOrder = (input: any, repo: any) => {
+
+  return {};
+  // return repo.update(input)
 
 }
 
-export const GetOrderById = (id: string, repo: orderRepositoryType) => {
-  return repo.find(id);
+export const GetOrderById = (id: string, repo: any) => {
+  // return repo.find(id);
 
 }
-export const DeleteOrder = (id: string, repo: orderRepositoryType) => {
-  return repo.delete(id);
+export const DeleteOrder = (id: string, repo: any) => {
+  // return repo.delete(id);
 }

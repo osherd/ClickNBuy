@@ -24,7 +24,7 @@ export class CatalogRepository implements ICatalogRepository {
       skip: offset
     })
   }
-  async findOne(id: string): Promise<Product> {
+  async findOne(id: number): Promise<Product> {
     const product = await this.prisma.product.findFirst({
       where: { id }
     })
@@ -33,7 +33,7 @@ export class CatalogRepository implements ICatalogRepository {
     }
     return product;
   }
-  async delete(id: string) {
+  async delete(id: number) {
     return this.prisma.product.delete({
       where: {
         id: id

@@ -1,4 +1,4 @@
-import { cartRepositoryType, orderRepositoryType } from '../types/repository.types';
+// import { cartRepositoryType, orderRepositoryType } from '../types/repository.types';
 
 const createOrder = (input: any): Promise<{}> => {
   // conect to db
@@ -15,7 +15,7 @@ const deleteOrder = (id: string): Promise<{}> => {
   return Promise.resolve({});
 }
 
-export const OrderRepository: orderRepositoryType = {
+export const OrderRepository: any = {
   create: createOrder,
   find: findOrder,
   update: updateOrder,

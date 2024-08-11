@@ -25,11 +25,11 @@ export class CatalogService {
   async getProducts(limit: number, offset: number) {
     return this.repository.find(limit, offset);
   }
-  async getProduct(id: string) {
+  async getProduct(id: number) {
     return this.repository.findOne(id)
   }
   // delete from Elastic search
-  async deleteProduct(id: string) {
+  async deleteProduct(id: number) {
     return this.repository.delete(id);
   }
 }

@@ -1,15 +1,16 @@
 import exppressApp from './express-app'
+import { logger } from './utils';
 
 const PORT = process.env.PORT || 4001;
 
 export const StartServer = async () => {
   exppressApp.listen(PORT, () => {
-    console.log(`App is Listening to port  ${PORT} `);
+    logger.info(`App is Listening to port  ${PORT} `);
   })
 
   // handle exception in case the server not respones or time out ...
   process.on('uncaughtException', async (err) => {
-    console.log(err);
+    logger.error(err);
     process.exit(1)
 
   })
@@ -17,6 +18,6 @@ export const StartServer = async () => {
 }
 
 StartServer().then(() => {
-  console.log('server is up');
+  logger.info('server is up');
 
 })
